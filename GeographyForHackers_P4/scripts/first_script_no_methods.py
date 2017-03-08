@@ -10,7 +10,7 @@ from PyQt4.QtCore import *
 from qgis.core import *
 from qgis.utils import iface
 
-wb = QgsVectorLayer('/home/medo/Desktop/research/analysis/ne_10m_admin_0_countries/ne_10m_admin_0_countries.shp', 'countries', 'ogr')
+wb = QgsVectorLayer('vector_file.shp', 'countries', 'ogr')
 QgsMapLayerRegistry.instance().addMapLayer(wb)
 
 active_layer = iface.activeLayer()

@@ -11,12 +11,12 @@ from qgis.core import *
 
 
 class FirstScript:
-    
+
     def __init__(self, iface):
         self.iface = iface
-    
+
     def load_layer(self):
-        wb = QgsVectorLayer('/home/medo/Desktop/research/analysis/ne_10m_admin_0_countries/ne_10m_admin_0_countries.shp', 'countries', 'ogr')
+        wb = QgsVectorLayer('vector_file.shp', 'countries', 'ogr')
         QgsMapLayerRegistry.instance().addMapLayer(wb)
 
     def change_color(self):

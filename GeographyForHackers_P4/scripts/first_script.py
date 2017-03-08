@@ -12,7 +12,7 @@ from qgis.utils import iface
 
 
 def load_layer():
-    wb = QgsVectorLayer('/home/medo/Desktop/research/analysis/ne_10m_admin_0_countries/ne_10m_admin_0_countries.shp', 'countries', 'ogr')
+    wb = QgsVectorLayer('vector_file.shp', 'countries', 'ogr')
     QgsMapLayerRegistry.instance().addMapLayer(wb)
 
 
@@ -27,4 +27,3 @@ def change_color():
 
 def open_attribute_table():
     iface.showAttributeTable(iface.activeLayer())
-
