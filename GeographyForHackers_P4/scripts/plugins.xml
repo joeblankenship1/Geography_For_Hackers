@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<?xml-stylesheet type='text/xsl' href='/contributed.xsl' ?>
+<plugins>
+  <pyqgis_plugin name='your script' version='1.0'>
+    <description>Your description</description>
+    <version>1.0</version>
+    <qgis_minimum_version>2.0</qgis_minimum_version>
+    <homepage></homepage>
+    <file_name>your_script.zip</file_name>
+    <author_name>your name</author_name>
+    <download_url>http://example.com/qgis_plugins/your_script.zip</download_url>
+    <upload_by>person who uploaded the zip file</upload_by>
+    <create_date>yyyy-mm-dd</create_date>
+    <update_date>None</upload_date>
+    <experimental>False</experimental>
+  </pyqgis_plugin>
+</plugins>

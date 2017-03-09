@@ -49,6 +49,7 @@ iface.legendInterface().refreshLayerSymbology(layer)
 symbol.setAlpha(0.5)
 
 # Custom Symbols
+
 # this uses QgsMarkerSymbolV2, QgsLineSymbolV2, and QgsFillSymbolV2
 sym = QgsMarkerSymbolV2.createSimple({'name':'circle', 'color': 'blue', 'size': '8', 'outline_width': '2'})
 renderer = layer.rendererV2()
@@ -76,6 +77,7 @@ sym0.properties()
 sym0.setCustomDashVector([10, 5])
 
 # Using Styles
+
 # Saving a style (either QML or SLD)
 layer = iface.activeLayer()
 layer.saveNamedStyle('/tmp/mystyle.qml')
@@ -85,14 +87,150 @@ iface.mapCanvas().refresh()
 iface.legendInterface().refreshLayerSymbology(layer)
 
 # Selecting and working with Features 
+
 for feature in layer.getFeatures():
     print feature.id()
 
+# get the name of a feature
+nme = feature['CNTRY_NAME']
+name = feature[2]
+
+# get the index
+idx = feature.fieldNameIndex('cntry_name')
+
+# get features using a rectangle 
+rectangle = QgsRectangle(-150, 60, -140, 61)
+request = QgsFeatureRequest().setFilterRect(rectangle)
+for feature in layer.getFeatures(request):
+    # do something
+
+# feature by id 
+request = QgsFeatureRequest().setFilterFid(3201)
+feature = layer.getFeatures(request).next()
+print feature['cntry_name']
+
+# wrap requests in try/except blocks 
+request = QgsFeatureRequest().setFilterFid(320021)
+try:
+    feature = lyr.getFeatures(request).next()
+except StopIteration:
+    print "Feature not found"
+
+# select all features
+layer.selectAll()
+
+# remove selection 
+layer.removeSelection()
+
+# Editing Attributes
+
+# edit feature with known fid 
+fid = 1
+new_name = {2: 'My new name'}
+layer.dataProvider().changeAttributeValues({fid: new_name})
+
+# fetching field index for edit 
+features = layer.getFeatures(QgsFeatureRequest().setFilterFid(1))
+feature = features.next()
+new_name = {feature.fieldNameIndex('name'): 'My New Name'}
+layer.dataProvider().changeAttributeValues({feature.id: new_name})
+
+# update multiple attributes
+layer = iface.activeLayer()
+provider = layer.dataProvider()
+features = layer.getFeatures(QgsFeatureRequest().setFilter(1))
+feature = features.next()
+feature['name'] = "My new Name"
+feature['city'] = "Lexington"
+field_map = provider.fieldNameMap()
+attrs = {field_map[key]: feature[key] for key in field_map}
+layer.dataProvider().changeAttributeValues({feature.id(): attrs})
+
+# Saving Images
+
+# you can save images as any number of formats - see documentation 
+mc = iface.mapCanvas().saveAsImage('/tmp/image.png')
+
+# Getting QGIS Paths
+
+# summary of paths 
+print QgsApplication.showSettings()
+
+# path to installed plugin 
+QgsApplication.qgisUserDbFilePath()
+
+# full path to plugin 
+QFileInfo(QgsApplication.qgisUserDbFilePath()).path()
+plugin_dir = os.path.join(QFileInfo(QgsApplication.qgisUserDbFilePath()).path(), 'python/plugins')
+plugin_dir
+plugin_path = os.path.join(plugin_dir, 'my_plugin')
+
+# Message and Feedback 
+
+# Message Box 
+QMessageBox.information(iface.mainWindow(), 'Important Information', 'This is an important message')
+
+# Message Log
+QgsMessageLog.logMessage('SuperZoom plugin initialized and ready', 'SuperZoom', QgsMessageLog.INFO)
+
+# Message Bar 
+from qgis.gui import QgsMessageBar
+iface.messageBar().pushMessage("Title", "message", QgsMessageBar.WARNING, 2)
+iface.messageBar().pushMessage("SuperZoom", "You sepcified an invalid zoom level", QgsMessageBar.CRITICAL, 10)
+
+# Refeshing Map Legend 
+
+# refresh map 
+iface.mapCanvas().refresh()
+
+# refersh legend 
+iface.legendInterface().refreshLayerSymbology(layer)
+
+# Creating a Map Tool 
+
+# see map_tool.py
+
+# using the map tool
+
+# create the tool
+map_tool = ConnectTool(self.canvas)
+
+# create an action to enable it
+self.connect_action = QAction(QIcon(":/ouricon/connect_icon"), "Connect", self)
+
+# add action to toolar
+self.toolbar.addAction(self.connect_action)
+
+# Connect action to method for tool
+self.connect_action.triggered.connect(self.connect_pt)
+
+# Create the method for map tool 
+def connect_pt(self):
+    self.map_canvas.setMapTool(self.tool_connect)
+
+# Create the method for new line
+def connect_complete(self, pt1, pt2):
+    # create the line from the points 
+    QMessageBox.information(None, "Connect Tool", "Creating line from %s to %s" % (pt1.toString(), pt2.toString()))
+
+self.tool_connect.line_complete.connect(self.connect_complete)
+
+# adding tool to custom toolbar
+
+rect_select = self.iface.actionSelectRectangle()
+self.toolbar.addAction(rect_select)
+
+# Access existing plugins 
+
+if 'pinpoint' in qgis.utils.plugins:
+    pp = qgis.utils.plugins['pinpoint']
+    pp.create_pin_layer()
+    pp.place_pin(QgsPoint(100,100), 1)
+
+# Setting up a repository
+
+# contents of plugins.xml
+# place in location that serves HTTP (GitHub would be good)
 
 
-
-
-
-
-
-
+    
