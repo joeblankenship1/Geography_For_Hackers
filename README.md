@@ -1,8 +1,6 @@
 #Geography For Hackers
 Geography for Hackers - Teaching all how to hack geography, use GIS, and think spatially!
 
-Training materials and additional content are coming soon!
-
 This will be a four part course that uses the academic and practical knowledge of geography, as well as free open source GIS projects, to teach professionals from any field of labor or study how space, place, scale, and time matters. This understanding can and will have extremely positive effects on daily activities and professional practices. Essentially, I'll be teaching anyone how to "hack" geography for their specific use cases and hopefully making geographic thought commonplace.
 
 This course is meant to be a cumulative process. That means in order to get the most out of this course, it is highly recommended that you take sections 1 through 4+ in order.
@@ -32,6 +30,10 @@ The content for this course can be found in [The PyQGIS Programmers Guide](https
 ###P5 - Remote Sensing with Hackable Devices
 
 Coming soon!
+
+###Future Course
+
+Please contant me directly, submit issues, or create wikis if you think there should be additional content or if there is content missing. I'll modify or add content ASAP!
 
 ##Thanks
 
