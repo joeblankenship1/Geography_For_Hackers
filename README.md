@@ -38,6 +38,6 @@ Please contant me directly, submit issues, or create wikis if you think there sh
 ## Thanks
 
 If there are any questions and/or concerns regarding this course and/or its content, please go to [www.cgrii.org](http://www.cgrii.org/) and contact us!
-While you're there, follow us on [Facebook](https://www.facebook.com/pages/Cyber-Geography-Research-Institute-International/339145946275055) and [Twitter](https://twitter.com/CGRIIorg) for the all the latest and greatest.
+While you're there, follow us on [Facebook](https://www.facebook.com/cgriiorg) and [Twitter](https://twitter.com/CGRIIorg) for the all the latest and greatest.
 
 This work is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/).
